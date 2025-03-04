@@ -1,0 +1,51 @@
+---
+sidebar_position: 2
+---
+
+# System Architectures
+
+![Docusaurus logo](/img/system-architecture.png)
+
+## High Level Application Architecture Diagram
+The proposed architecture leverages Microservices Architecture Pattern, along with required third-party integrations.
+
+#### Web Portal
+The web portal is the Single Page Application. The application have multiple different modules and access to those modules will be given as per the roles and permissions assigned to user.
+- Employee Portal
+- HR Portal
+- Infrastructure Portal
+- Admin Portal
+
+Authentication and Authorization
+Authentication and Authorization will be implemented using OpenID Connect  and Oauth2.0  protocol.
+
+Phase 1: The application will be integrated with Azure Active Directory to implement Authentication and Authorization.
+
+Note: In future phases the other third party providers support will be added.
+
+Azure Kubernetes Services:
+This service would be used to manage the cluster of docker containers. The backend RESTful services will be hosted in docker containers.
+
+Azure App Services:
+This service would be used to host single page applications. The Host App(Main Client App) and other micro frontends will be hosted as Azure Web App.
+
+Data Store:
+It will be used to store structure, semi-structured and non-structured data to support application operations.
+
+Elastic Pool: would be used to manage multiple database and manage database scaling and resource allocations.
+Azure SQL database: would be used as the application database.
+Blob Storage: requirements on storing any unstructured or semi-structured data files would be fulfilled by integrating Azure Storage Blob (videos, images, etc.).
+Azure Cache For Redis: would improve the performance & scalability of an application that heavily uses a backend data store or is dependent on third-party services for querying & fetching the required data.
+Integration and Background Services:
+Azure Function: would be responsible for executing background or scheduled jobs asynchronously and would also integrate with the required third-party services & data store.
+Logic Apps: requirements on integrating with office 365 would be fulfilled using Azure Logic Apps plugins to integrate with various Microsoft services.
+Notification Services:
+This services will be integrated with integration services to send Email and SMS notifications using different service providers.
+
+Configuration, Security & Monitoring
+App Insights: would be used to monitor service logs and error debugging purposes.
+App Configuration: could be leveraged to centrally manage and push different application-specific configuration parameters, without redeploying the application.
+Azure Monitor: would be leveraged to centrally monitor various applications, services, logs & resources.
+Key Vault: would be used to securely store and manage various secrets, passwords, and certificates.
+Security Center: enables continuous assessment of security posture and protects against cyberattacks for Azure resources.
+Note: All the backend services and SPAs will be accessible only on secure socket layer. (HTTPs only)
